@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #D6EEEE;
+}
+</style>
+</head>
+<body>
+<h1>Hello</h1>
+    <form action="{{ url_for('reset')}}" method="post" autocomplete="off">
+        <input type="submit" class="btn" value="Reset/Initialize Database">
+    </form>
+<br>
+    <h3>Add Owner</h3>
+    <form action="{{ url_for('add_owner') }}" method="post" autocomplete="off">
+        <input type="text" name="user" placeholder="Username" required>
+        <input type="text" name="fname" placeholder="First Name" required>
+        <input type="text" name="lname" placeholder="Last Name" required>
+        <input type="text" name="address" placeholder="Address" required>
+        <input type="date" name="birthdate" placeholder="Birthdate" required>
+        <input type="submit" class="btn" value="Add User">
+    </form>
+<br>
+    <h3>Add Employee</h3>
+    <form action="{{ url_for('add_employee') }}" method="post" autocomplete="off">
+        <input type="text" name="user" placeholder="Username" required>
+        <input type="text" name="fname" placeholder="First Name" required>
+        <input type="text" name="lname" placeholder="Last Name" required>
+        <input type="text" name="address" placeholder="Address" required>
+        <input type="date" name="birthdate" placeholder="Birthdate" required>
+        <input type="text" name="taxid" placeholder="Tax ID" required >
+        <input type="date" name="hiredate" placeholder="Date Hired" required>
+        <input type="number" name="experience" placeholder="Experience" required>
+        <input type="number" name="salary" placeholder="Salary" required>
+        <input type="submit" class="btn" value="Add Employee">
+    </form>
+
+<br>
+    <h3>Add Pilot Role</h3>
+    <form action="{{ url_for('add_pilot_role') }}" method="post" autocomplete="off">
+        <input type="text" name="user" placeholder="Username" required>
+        <input type="text" name="licenseID" placeholder="License ID" required>
+        <input type="number" name="experience" placeholder="Experience" required>
+        <input type="submit" class="btn" value="Add Pilot">
+    </form>
+
+<br>
+
+    <h3>Add Worker Role</h3>
+    <form action="{{ url_for('add_worker_role') }}" method="post" autocomplete="off">
+        <input type="text" name="user" placeholder="Username" required>
+        <input type="submit" class="btn" value="Add Worker">
+    </form>
+
+<br>
+
+    <h3>Add Ingredient</h3>
+    <form action="{{ url_for('add_ingredient') }}" method="post" autocomplete="off">
+        <input type="text" name="barcode" placeholder="Barcode" required>
+        <input type="text" name="name" placeholder="Ingredient Name" required>
+        <input type="number" name="weight" placeholder="Ingredient Weight" required>
+        <input type="submit" class="btn" value="Add Ingredient">
+    </form>
+<br>
+
+    <h3>Add Drone</h3>
+    <form action="{{ url_for('add_drone') }}" method="post" autocomplete="off">
+        <input type="text" name="id" placeholder="Drone ID" required>
+        <input type="number" name="tag" placeholder="Drone Tag" required>
+        <input type="number" name="fuel" placeholder="Fuel" required>
+        <input type="number" name="capacity" placeholder="Capacity" required>
+        <input type="number" name="sales" placeholder="Sales" required>
+        <input type="text" name="flown_by" placeholder="Flown by">
+        <input type="submit" class="btn" value="Add Drone">
+    </form>
+<br>
+
+    <h3>Add Restaurant</h3>
+    <form action="{{ url_for('add_restaurant') }}" method="post" autocomplete="off">
+        <input type="text" name="name" placeholder="Restaurant Name" required>
+        <input type="number" name="rating" placeholder="Restaurant Rating" required>
+        <input type="number" name="spent" placeholder="Money Spent" required>
+        <input type="text" name="location" placeholder="Location" required>
+        <input type="submit" class="btn" value="Add Restaurant">
+    </form>
+<br>
+
+    <h3>Add Service</h3>
+    <form action="{{ url_for('add_service') }}" method="post" autocomplete="off">
+        <input type="text" name="id" placeholder="Service ID" required>
+        <input type="text" name="name" placeholder="Service Name" required>
+        <input type="text" name="base" placeholder="Home Base" required>
+        <input type="text" name="manager" placeholder="Manager" required>
+        <input type="submit" class="btn" value="Add Service">
+    </form>
+<br>
+
+    <h3>Add Location</h3>
+    <form action="{{ url_for('add_location') }}" method="post" autocomplete="off">
+        <input type="text" name="label" placeholder="Label" required>
+        <input type="number" name="x" placeholder="X coordinate" required>
+        <input type="number" name="y" placeholder="Y coordinate" required>
+        <input type="number" name="space" placeholder="Space" required>
+        <input type="submit" class="btn" value="Add Location">
+    </form>
+<br>
+
+    <form action="{{ url_for('owner_view')}}" method="post" autocomplete="off">
+        <input type="submit" class="btn" value="Display Owner View">
+    </form>
+
+    <div class="view">
+        <table>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>Restaurant Number</th>
+            <th>Location Number</th>
+            <th>Highest Rating</th>
+            <th>Lowest Rating</th>
+            <th>Total Debt</th>
+
+        {% for f in owners %}
+            <tr>
+              <td>
+                {{f[0]}}
+              </td>
+                <td>
+                {{f[1]}}
+              </td>
+            <td>
+                {{f[2]}}
+              </td>
+            <td>
+                {{f[3]}}
+              </td>
+            <td>
+                {{f[4]}}
+              </td>
+            <td>
+                {{f[5]}}
+              </td>
+            <td>
+                {{f[6]}}
+              </td>
+            <td>
+                {{f[7]}}
+              </td>
+            <td>
+                {{f[8]}}
+              </td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+
+<br>
+
+    <form action="{{ url_for('employee_view')}}" method="post" autocomplete="off">
+        <input type="submit" class="btn" value="Display Employee View">
+    </form>
+
+    <div class="view">
+        <table>
+            <th>Username</th>
+            <th>Tax ID</th>
+            <th>Salary</th>
+            <th>Hired</th>
+            <th>Experience</th>
+            <th>License ID</th>
+            <th>Pilot Experience</th>
+            <th>Manager Status</th>
+
+        {% for f in employees %}
+            <tr>
+              <td>
+                {{f[0]}}
+              </td>
+                <td>
+                {{f[1]}}
+              </td>
+            <td>
+                {{f[2]}}
+              </td>
+            <td>
+                {{f[3]}}
+              </td>
+            <td>
+                {{f[4]}}
+              </td>
+            <td>
+                {{f[5]}}
+              </td>
+            <td>
+                {{f[6]}}
+              </td>
+            <td>
+                {{f[7]}}
+              </td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+
+<br>
+
+    <form action="{{ url_for('pilot_view')}}" method="post" autocomplete="off">
+        <input type="submit" class="btn" value="Display Pilot View">
+    </form>
+
+    <div class="view">
+{#        <p>{{ pilots }}</p>#}
+        <table>
+            <th>Username</th>
+            <th>License ID</th>
+            <th>Experience</th>
+            <th>Controlled Drones</th>
+
+        {% for f in pilots %}
+            <tr>
+              <td>
+                {{f[0]}}
+              </td>
+                <td>
+                {{f[1]}}
+              </td>
+            <td>
+                {{f[2]}}
+              </td>
+            <td>
+                {{f[3]}}
+              </td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+
+<br>
+
+    <form action="{{ url_for('location_view')}}" method="post" autocomplete="off">
+        <input type="submit" class="btn" value="Display Location View">
+    </form>
+
+    <div class="view">
+        <table>
+            <th>Label</th>
+            <th>X Coord</th>
+            <th>Y Coord</th>
+            <th>Restaurant Number</th>
+            <th>Delivery Service Number</th>
+            <th>Location Number</th>
+
+        {% for f in locations %}
+            <tr>
+              <td>
+                {{f[0]}}
+              </td>
+                <td>
+                {{f[1]}}
+              </td>
+            <td>
+                {{f[2]}}
+              </td>
+            <td>
+                {{f[3]}}
+              </td>
+            <td>
+                {{f[4]}}
+              </td>
+            <td>
+                {{f[5]}}
+              </td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+
+<br>
+
+    <form action="{{ url_for('ingredient_view')}}" method="post" autocomplete="off">
+        <input type="submit" class="btn" value="Display Ingredient View">
+    </form>
+
+    <div class="view">
+        <table>
+            <th>Name</th>
+            <th>Locations</th>
+            <th>Total Packages</th>
+            <th>Min Price</th>
+            <th>Max Price</th>
+
+        {% for f in ingredients %}
+            <tr>
+              <td>
+                {{f[0]}}
+              </td>
+                <td>
+                {{f[1]}}
+              </td>
+            <td>
+                {{f[2]}}
+              </td>
+            <td>
+                {{f[3]}}
+              </td>
+            <td>
+                {{f[4]}}
+              </td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+
+<br>
+
+    <form action="{{ url_for('service_view')}}" method="post" autocomplete="off">
+        <input type="submit" class="btn" value="Display Service View">
+    </form>
+
+    <div class="view">
+        <table>
+            <th>ID</th>
+            <th>Long Name</th>
+            <th>Home Base</th>
+            <th>Manager</th>
+            <th>Total Sales</th>
+            <th>Ingredient Number</th>
+            <th>Total Cost</th>
+            <th>Total Weight</th>
+
+        {% for f in services %}
+            <tr>
+              <td>
+                {{f[0]}}
+              </td>
+                <td>
+                {{f[1]}}
+              </td>
+            <td>
+                {{f[2]}}
+              </td>
+            <td>
+                {{f[3]}}
+              </td>
+            <td>
+                {{f[4]}}
+              </td>
+            <td>
+                {{f[5]}}
+              </td>
+            <td>
+                {{f[6]}}
+              </td>
+            <td>
+                {{f[7]}}
+              </td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+
+</body>
+</html>

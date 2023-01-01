@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .container {
+      display: flex;
+      justify-content: space-around;
+        color: blue;
+    }
+    .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button2 {background-color: #008CBA;} /* Blue */
+.button3 {background-color: #f44336;} /* Red */
+.button4 {background-color: #B45AE1; } /* Purple */
+.button5 {background-color: #555555;} /* Black */
+  </style>
+</head>
+<body>
+<h1>4400 Final Project</h1>
+    <form action="{{ url_for('reset')}}" method="post" autocomplete="off">
+        <input type="submit" class="button button5" value="Reset / Initialize Database">
+    </form>
+<hr>
+<br>
+<br>
+
+  <div class="container">
+      <form action="{{ url_for('add')}}" method="post" autocomplete="off">
+        <input type="submit" class ="button" value="ADD">
+    </form>
+      <form class="btn" action="{{ url_for('misc')}}" method="post" autocomplete="off">
+        <input type="submit" class ="button button2" value="MISC">
+    </form>
+      <form class="btn" action="{{ url_for('remove')}}" method="post" autocomplete="off">
+        <input type="submit" class ="button button3" value="REMOVE">
+    </form>
+      <form class="btn" action="{{ url_for('view')}}" method="post" autocomplete="off">
+        <input type="submit" class ="button button4" value="VIEW">
+    </form>
+
+  </div>
+</body>
+</html>
